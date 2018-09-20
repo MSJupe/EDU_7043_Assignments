@@ -18,3 +18,6 @@ Assignment_1$State[1:10]
 NewEngMurder<-subset(Assignment_1,State=="CT"|State=="ME"|State=="MA"|State=="NH"|State=="RI"|State=="VT")
 summary (NewEngMurder)
 summary (Assignment_1$Vcrime)
+
+#Great Job. Try to make more comments to yourself throughout your code. It will be a helpful habbit to get into.
+#120 out of 100
