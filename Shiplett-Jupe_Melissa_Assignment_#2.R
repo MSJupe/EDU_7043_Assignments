@@ -1,33 +1,38 @@
-library(readxl)
-CDC_2016_Fertility_TX_Clinic_Success_Rates_Report <- read_excel("C:/Users/MShiplettJupe/Desktop/Desc & Comp Stats/Data Sets/CDC 2016 Fertility TX Clinic Success Rates Report.xlsx")
-names(CDC_2016_Fertility_TX_Clinic_Success_Rates_Report)
-myvars<-c("TotNumberCycles", "IVF_Rate", "TotUsingFrozenEggs", "Diag_OvulatoryRate", "Diag_MaleRate")
-cdc2<-CDC_2016_Fertility_TX_Clinic_Success_Rates_Report[myvars]
+#bring in data
+CDC_ART<-read.csv("C:/Users/MShiplettJupe/Desktop/Desc & Comp Stats/Data Sets/CDC 2016 Fertility Clinic Success Rates Report.csv", stringsAsFactors= F)
+myvars<-c("TotNumberCycles", "FshNDCycle2", "TotUsingFrozenEggs", "Diag_OvulatoryRate", "Diag_MaleRate")
+cdc2<-CDC_ART[myvars]
 names(cdc2)
-summary(cdc2$"TotNumberCycles", na.rm = TRUE)
-summary(cdc2$"IVF_Rate", na.rm = TRUE)
-summary(cdc2$"TotUsingFrozenEggs", na.rm = TRUE)
-summary(cdc2$"Diag_OvulatoryRate", na.rm = TRUE)
-summary(cdc2$"Diag_MaleRate", na.rm = TRUE)
-temp1<-table(as.vector(cdc2$"TotNumberCycles"))
-names(temp1[temp1 == max(temp1)])
-temp2<-table(as.vector(cdc2$"TotUsingFrozenEggs"))
-names(temp2[temp2 == max(temp2)])
-temp3<-table(as.vector(cdc2$"Diag_OvulatoryRate"))
-names(temp3[temp3 == max(temp3)])
-temp4<-table(as.vector(cdc2$"IVF_Rate"))
-names(temp4[temp4 == max(temp4)])
-temp5<-table(as.vector(cdc2$"Diag_MaleRate"))
-names(temp5[temp5 == max(temp5)])
-View(temp1)
-View(temp2)
-View(temp3)
-View(temp4)
-View(temp5)
-sd(cdc2$"Diag_OvulatoryRate")
-var(cdc2$"Diag_OvulatoryRate")
-range(cdc2$"Diag_OvulatoryRate")
-max(cdc2$"Diag_OvulatoryRate")
-boxplot(cdc2$"Diag_OvulatoryRate", main="BoxPlot-Ovulatory Factor Infertility", xlab="Ovulatory Factors", ylab="% in Texas Fertility Clinics")
-hist(cdc2$Diag_OvulatoryRate)
+
+#Structure of Data
+names(CDC_ART)
+str(CDC_ART)
+
+
+#Mean, Meadian, and Range
+summary(CDC_ART$"TotNumberCycles", na.rm = TRUE)
+summary(CDC_ART$"FshNDCycle2", na.rm = TRUE)
+summary(CDC_ART$"TotUsingFrozenEggs", na.rm = TRUE)
+summary(CDC_ART$"Diag_OvulatoryRate")
+summary(CDC_ART$"Diag_MaleRate", na.rm = TRUE)
+
+#Mode
+mode_TotalCycles<-table(CDC_ART$TotNumberCycles)
+View(mode_TotalCycles)
+mode_FrozenEggs<-table(CDC_ART$TotUsingFrozenEggs)
+View(mode_TotalCycles)
+mode_OvulFactor<-table(CDC_ART$Diag_OvulatoryRate)
+View(mode_OvulFactor)
+mode_MaleFactor<-table(CDC_ART$Diag_MaleRate)
+View(mode_MaleFactor)
+mode_FshNDCycle2<-table(CDC_ART$FshNDCycle2)
+View(mode_FshNDCycle2)
+
+# Standard Deviation, Variance
+sd(CDC_ART$"Diag_MaleRate")
+var(CDC_ART$"Diag_MaleRate")
+
+#BoxPlot and Histogram
+boxplot(CDC_ART$"Diag_MaleRate", main= "Box Plot of Male Factor Infertility")
+hist(CDC_ART$Diag_MaleRate, ylab="Number of Clinics", xlab= "Rate of Male Factor Infertility", main="Histogram of US Fertility Clinics: Male Factor Infertility")
 
